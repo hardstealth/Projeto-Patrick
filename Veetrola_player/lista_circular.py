@@ -1,36 +1,36 @@
-class Musica: #seria o no em uma lista normal -> elemento individual da lista
-    def __init__(self, musica):
-        self.musica = musica #OBS -> PRECISA DO SELF PORQUE POO em python é estranho (esta se referindo ao objeto da vez)
-        self.proximo = None   # Ponteiro para a proxima musica
-        self.anterior = None  # Ponteiro para a musica anterior
+class No: #seria o no em uma lista normal -> elemento individual da lista
+    def __init__(self, dado):
+        self.dado = dado #OBS -> PRECISA DO SELF PORQUE POO em python é estranho (esta se referindo ao objeto da vez)
+        self.proximo = None   # Ponteiro para o proximo no
+        self.anterior = None  # Ponteiro para o no anterior
 
 
 class ListaDuplamenteEncadeadaCircular: # estrutura da lista
     def __init__(self):
-        self.cabeca = None  # Primeira musica da lista (início)
+        self.cabeca = None  # Primeiro no da lista (início)
 
     def esta_vazia(self):
         return self.cabeca is None #verifica se a lista está vazia ou não.  Pq se não tem cabeça a lista obrigatoriamente conhnece seu primeiro elemento, caso não conheça ou a lista não existe ou ela está vazia
 
-    def inserir_no_fim(self, musica):
-        nova_musica = Musica (musica) #cria um novo objeto da classe musica
+    def inserir_no_fim(self, dado):
+        novo_no = No(dado) #cria um novo objeto da classe No
 
         # Caso 1: A lista está vazia
         if self.esta_vazia(): #Usa a função esta_vazia para verificar se a lista está vazia
-            self.cabeca = nova_musica #cria a lista usando a primeira musica adicinada
-            nova_musica.proximo = nova_musica   # Aponta para si mesmo porque é circular e só tem ela na lista
-            nova_musica.anterior = nova_musica  # Aponta para si mesmo porque é circular e só tem ela na lista
+            self.cabeca = novo_no #cria a lista usando o primeiro no adicionado
+            novo_no.proximo = novo_no   # Aponta para si mesmo porque é circular e só tem ele na lista
+            novo_no.anterior = novo_no  # Aponta para si mesmo porque é circular e só tem ele na lista
             return
 
         # Caso 2: A lista já tem elementos
         # Como é circular, o "anterior" da cabeça é sempre o último nó (cauda)
         ultimo = self.cabeca.anterior
 
-        # Quando uma nova musica é adicionada
-        nova_musica.proximo = self.cabeca #a nova musica vai ficar no final, ela tem que apontar para o inicio como o proximo
-        nova_musica.anterior = ultimo # como a nova musica vai ficar no final, o antecessor dela é o antigo ultimo
-        ultimo.proximo = nova_musica #atualiza o antigo ultimo para apontar para a nova musica.
-        self.cabeca.anterior = nova_musica #Manda a origem da lista apontar para a nova musica (apontar o anterior no caso)
+        # Quando um novo no é adicionado
+        novo_no.proximo = self.cabeca #o novo no vai ficar no final, ele tem que apontar para o inicio como o proximo
+        novo_no.anterior = ultimo # como o novo no vai ficar no final, o antecessor dele é o antigo ultimo
+        ultimo.proximo = novo_no #atualiza o antigo ultimo para apontar para o novo no.
+        self.cabeca.anterior = novo_no #Manda a origem da lista apontar para o novo no (apontar o anterior no caso)
 
     def exibir_frente(self):
         """Percorre a lista do início ao fim."""
@@ -41,11 +41,11 @@ class ListaDuplamenteEncadeadaCircular: # estrutura da lista
         atual = self.cabeca #aponta para o nó que estamos olhando (começa da cabeça porque quer exibir pela frente (se a lista não fosse duplamente encadeada seria obrigado a começar por aqui porque o primeiro elemento conhece o prox))
         elementos = [] # cria uma lista vazia para armazenar os elementos da lista circular
         while True:
-            elementos.append(str(atual.musica))#guarda a musica atual como uma string e coloca ela na lista com o append sem apagar o que ja esta la
-            atual = atual.proximo #aponta para a proxima musica/no da musica
+            elementos.append(str(atual.dado))#guarda o dado atual como uma string e coloca ele na lista com o append sem apagar o que ja esta la
+            atual = atual.proximo #aponta para o proximo no
             if atual == self.cabeca:  # Condição de parada: deu a volta completa na lista
                 break
-        print(" <-> ".join(elementos) + " (volta ao início)") #O método .join() pega todos os itens da lista elementos (ex: ["Música A", "Música B", "Música C"]) e cola todos em uma única string, colocando " <-> " entre eles
+        print(" <-> ".join(elementos) + " (volta ao início)") #O método .join() pega todos os itens da lista elementos (ex: ["No A", "No B", "No C"]) e cola todos em uma única string, colocando " <-> " entre eles
 
     def exibir_tras(self):
         """Percorre a lista de trás para frente."""
@@ -57,8 +57,8 @@ class ListaDuplamenteEncadeadaCircular: # estrutura da lista
         atual = ultimo
         elementos = []
         while True:
-            elementos.append(str(atual.musica))
-            atual = atual.anterior # aponta para a musica anterior (percorre a lista ao contrario)
+            elementos.append(str(atual.dado))
+            atual = atual.anterior # aponta para o no anterior (percorre a lista ao contrario)
             if atual == ultimo:  # Condição de parada: voltou ao último
                 break
         print(" <-> ".join(elementos) + " (volta ao fim)")
