@@ -95,7 +95,7 @@ O sistema possui a opção **`[T] Carga`** no menu principal, que insere automat
 
 | Integrante | Responsabilidade |
 | :--- | :--- |
-| Gyl Yury da Silva Lima | Implementação da Árvore AVL (`arvore_avl.py`), modelo `Musica`, interface da vitrola (`vitrola_ui.py`) e documentação |
+| Gyl Yury da Silva Lima | Implementação da Árvore AVL (`arvore_avl.py`), modelo `Musica`, interface da vitrola (`veetrola_ui.py`) e documentação |
 | Raul Correia dos Santos | Implementação da Fila (`fila.py`) e integração da aplicação principal (`main.py`) |
 | João Pedro dos Santos | Implementação da Lista Duplamente Encadeada Circular (`lista_circular.py`), da Pilha (`pilha.py`) e documentação |
 | Antunes Lenini Farias de Oliveira | Implementação da Tabela Hash (`tabela_hash.py`) e validação do teste de carga |
